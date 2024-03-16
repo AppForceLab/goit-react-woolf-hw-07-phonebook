@@ -1,7 +1,9 @@
+import React from 'react';
+
 const ContactListItem = ({ contact, onDelete }) => {
   return (
     <li>
-      {contact.name} - {contact.number}
+      {contact.name}: {contact.phone}
       <button onClick={onDelete}>Delete</button>
     </li>
   );
