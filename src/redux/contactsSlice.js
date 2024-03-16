@@ -16,14 +16,21 @@ export const deleteContact = createAsyncThunk('contacts/deleteContact', async (c
   return contactId;
 });
 
+const initialState = {
+  items: [],
+  filter: '',
+  isLoading: false,
+  error: null,
+};
+
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null
+  initialState,
+  reducers: {
+    updateFilter: (state, action) => {
+      state.filter = action.payload;
+    },
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, (state) => {
@@ -42,9 +49,10 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter((contact) => contact.id !== action.payload);
+        state.items = state.items.filter(contact => contact.id !== action.payload);
       });
   },
 });
 
+export const { updateFilter } = contactsSlice.actions;
 export default contactsSlice.reducer;

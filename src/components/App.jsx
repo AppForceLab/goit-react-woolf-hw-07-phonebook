@@ -4,6 +4,8 @@ import { store } from "../redux/store";
 import Filter from './Filter/Filter';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -15,6 +17,7 @@ const App = () => {
         <Filter />
         <ContactList />
       </div>
+      <ToastContainer />
     </Provider>
   );
 };

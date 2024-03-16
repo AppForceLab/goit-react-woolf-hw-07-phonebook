@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateFilter } from '../../redux/filterSlice'; // Упевніться, що шлях до filterSlice вірний
 import './Filter.css';
-import { getFilter } from '../../redux/selectors';
+import {  getFilter } from '../../redux/selectors';
+import { updateFilter } from '../../redux/contactsSlice';
+
 
 const Filter = () => {
   const filter = useSelector(getFilter);

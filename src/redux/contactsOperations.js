@@ -1,26 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from '../api/api';
+import * as api from '../api/api'; // Убедитесь, что пути корректны
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await api.fetchContacts();
-      return data;
+      const response = await api.fetchContactsApi();
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, number }, { rejectWithValue }) => {
+  async (contact, { rejectWithValue }) => {
     try {
-      const data = await api.addContact(name, number);
-      return data;
+      const response = await api.addContactApi(contact);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -29,10 +29,10 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, { rejectWithValue }) => {
     try {
-      await api.deleteContact(contactId);
+      await api.deleteContactApi(contactId);
       return contactId;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
